@@ -93,7 +93,7 @@ spec:
       }
       steps {
         container('kubectl') {
-          sh 'kubectl patch deploy/diplom -p \'{"spec": {"template": {"spec": {"containers": [{"name": "diplom-app","image": "${IMAGE_NAME}"}]}}}}\' -n stage'
+          sh "kubectl patch deploy/diplom -p '{\"spec\": {\"template\": {\"spec\": {\"containers\": [{\"name\": \"diplom-app\",\"image\": \"$IMAGE_NAME\"}]}}}}\' -n stage"
         }
       }
     }
