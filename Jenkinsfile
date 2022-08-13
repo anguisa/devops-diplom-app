@@ -51,9 +51,9 @@ spec:
       ],
       genericHeaderVariables: [[key: 'x-github-event']],
       // создание тега + id коммита нет или push с коммитом с непустым id (одни 0)
-      // если тег ставится на коммит, то приходит 2 события - создание тега и push коммитов
-      regexpFilterExpression: '^tag create anguisa/devops-diplom-app 0$|^branch push anguisa/devops-diplom-app (?!0{40})([0-9a-f]+)$',
-      regexpFilterText: '$ref_type $x_github_event $repository $commit',
+      // если тег ставится на коммит, то приходит 2 события - создание тега (используем) и push (пропускаем)
+      regexpFilterExpression: '^.+ tag create anguisa/devops-diplom-app 0$|^(?!refs/tags/.+)(.+) branch push anguisa/devops-diplom-app (?!0{40})([0-9a-f]+)$',
+      regexpFilterText: '$ref $ref_type $x_github_event $repository $commit',
       causeString: 'Triggered on $ref',
       printContributedVariables: true,
       printPostContent: true,
